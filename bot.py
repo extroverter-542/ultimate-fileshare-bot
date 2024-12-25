@@ -98,6 +98,11 @@ async def verify_user(bot, user_id: int) -> bool:
     if IS_VERIFY != "True":
         return True
 
+    # Ensure the bot does not send a message to itself
+    bot_user = await bot.get_me()
+    if user_id == bot_user.id:
+        return True
+
     # Generate a short link for verification
     short_link = generate_short_link(user_id)
 

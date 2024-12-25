@@ -46,7 +46,7 @@ class Bot(Client):
 
                 # Verify user
                 user_id = usr_bot_me.id
-                if not await verify_user(user_id):
+                if not await verify_user(self, user_id):
                     self.LOGGER(__name__).info("User verification failed.")
                     return
 
@@ -94,7 +94,7 @@ class Bot(Client):
         await super().stop()
         self.LOGGER(__name__).info("Bot stopped.")
 
-async def verify_user(user_id: int) -> bool:
+async def verify_user(bot, user_id: int) -> bool:
     if IS_VERIFY != "True":
         return True
 

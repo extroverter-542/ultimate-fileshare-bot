@@ -115,8 +115,14 @@ def generate_short_link(user_id: int) -> str:
         "api": SHORTLINK_API,
         "url": f"{SHORTLINK_URL}/verify?user_id={user_id}"
     })
-    data = response.json()
-    return data.get("shortlink", "Error generating link")
+    if response.status_code == 200:
+        try:
+            data = response.json()
+            return data.get("shortlink", "Error generating link")
+        except requests.exceptions.JSONDecodeError:
+            return "Error: Invalid JSON response"
+    else:
+        return f"Error: Received status code {response.status_code}"
 
 async def wait_for_verification(user_id: int) -> bool:
     await asyncio.sleep(VERIFY_EXPIRE)

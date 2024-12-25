@@ -87,8 +87,8 @@ class Bot(Client):
                 break  # Exit the loop if successful
 
             except FloodWait as e:
-                self.LOGGER(__name__).warning(f"FloodWait: Have to wait for {e.x} seconds.")
-                await asyncio.sleep(e.x)  # Wait for the specified duration
+                self.LOGGER(__name__).warning(f"FloodWait: Have to wait for {e.value} seconds.")
+                await asyncio.sleep(e.value)  # Wait for the specified duration
 
     async def stop(self, *args):
         await super().stop()

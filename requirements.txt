@@ -1,7 +1,8 @@
 # --- For-Bot-Working --------- #
+pyrogram
 aiohttp
 aiohttp_cors
-pyrogram
+motor
 TgCrypto
 pyromod==1.5
 python-dotenv

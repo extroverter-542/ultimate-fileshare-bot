@@ -94,6 +94,10 @@ class Bot(Client):
         await super().stop()
         self.LOGGER(__name__).info("Bot stopped.")
 
+    def run(self):
+        # Override the run method to call start without additional keyword arguments
+        super().run()
+
 async def verify_user(bot, user_id: int) -> bool:
     if IS_VERIFY != "True":
         return True

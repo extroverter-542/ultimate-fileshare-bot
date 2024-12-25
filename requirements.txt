@@ -1,4 +1,6 @@
 # --- For-Bot-Working --------- #
+aiohttp
+aiohttp_cors
 pyrogram
 TgCrypto
 pyromod==1.5

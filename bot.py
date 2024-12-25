@@ -14,12 +14,12 @@ import asyncio
 from config import API_HASH, APP_ID, LOGGER, TG_BOT_TOKEN, TG_BOT_WORKERS, FORCE_SUB_CHANNEL, CHANNEL_ID, PORT, SHORTLINK_URL, SHORTLINK_API, VERIFY_EXPIRE, IS_VERIFY, TUT_VID, ADMINS
 
 ascii_art = """
-░█████╗░░█████╗░██████╗░███████╗██╗░░██╗██████╗░░█████╗░████████╗██╗░░░██╗██████╗░░█████╗░████████╗█�
-██╔══██╗██╔══██╗██╔══██╗██╔════╝╚██╗██╔╝██╔══██╗██╔══██╗╚══██╔══╝██║░░░██║██╔══██╗██╔══██╗╚══██╔══╝╚�
-██║░░╚═╝██║░░██║██║░░██║█████╗░░░╚███╔╝░██████╦╝██║░░██║░░░██║░░░██║░░░██║██████╦╝██║░░██║░░░██║░░░░�
-██║░░██╗██║░░██║██║░░██║██╔══╝░░░██╔██╗░██╔══██╗██║░░██║░░░██║░░░██║░░░██║██╔══██╗██║░░██║░░░██║░░░░�
-╚█████╔╝╚█████╔╝██████╔╝███████╗██╔╝╚██╗██████╦╝╚█████╔╝░░░██║░░░╚██████╔╝██████╦╝╚█████╔╝░░░██║░░░░�
-░╚════╝░░╚════╝░╚═════╝░╚══════╝╚═╝░░╚═╝╚═════╝░░╚════╝░░░░╚═╝░░░░╚═════╝░╚═════╝░░╚════╝░░░░╚═╝░░░░�
+░█████╗░░█████╗░██████╗░███████╗██╗░░██╗██████╗░░█████╗░████████╗███╗░░██╗
+██╔══██╗██╔══██╗██╔══██╗██╔════╝╚██╗██╔╝██╔══██╗██╔══██╗╚══██╔══╝████╗░██║
+██║░░╚═╝██║░░██║██║░░██║█████╗░░░╚███╔╝░██████╦╝██║░░██║░░░██║░░░██╔██╗██║
+██║░░██╗██║░░██║██║░░██║██╔══╝░░░██╔██╗░██╔══██╗██║░░██║░░░██║░░░██║╚████║
+╚█████╔╝╚█████╔╝██████╔╝███████╗██╔╝╚██╗██████╦╝╚█████╔╝░░░██║░░░██║░╚███║
+░╚════╝░░╚════╝░╚═════╝░╚══════╝╚═╝░░╚═╝╚═════╝░░╚════╝░░░░╚═╝░░░╚═╝░░╚══╝
 """
 
 class Bot(Client):
@@ -57,7 +57,7 @@ class Bot(Client):
             except Exception as a:
                 self.LOGGER(__name__).warning(a)
                 self.LOGGER(__name__).warning("Bot can't Export Invite link from Force Sub Channel!")
-                self.LOGGER(__name__).warning(f"Please Double check the FORCE_SUB_CHANNEL value and Make sure Bot is Admin in channel with Invite Users via Link Permission, Current Force Sub Channel Value: {FORCE_SUB_CHANNEL}")
+                self.LOGGER(__name__).warning(f"Please Double check the FORCE_SUB_CHANNEL value and Make sure Bot is Admin in channel with Invite Users via Link Permission, Current Force Sub Channel: {FORCE_SUB_CHANNEL}")
                 self.LOGGER(__name__).info("\nBot Stopped. Join https://t.me/CodeXBotzSupport for support")
                 sys.exit()
         try:
@@ -105,7 +105,7 @@ async def verify_user(user_id: int) -> bool:
 def generate_short_link(user_id: int) -> str:
     response = requests.get(f"{SHORTLINK_URL}/create", params={
         "api": SHORTLINK_API,
-        "url": f"https://shortxlinks.com/verify?user_id={user_id}"
+        "url": f"{SHORTLINK_URL}/verify?user_id={user_id}"
     })
     data = response.json()
     return data.get("shortlink", "Error generating link")

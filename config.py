@@ -69,7 +69,7 @@ ADMINS.append(OWNER_ID)
 ADMINS.append(8160777407)
 
 # Shortlink service configuration
-SHORTLINK_URL = os.environ.get("SHORTLINK_URL", "shortxlinks.com")
+SHORTLINK_URL = os.environ.get("SHORTLINK_URL", "https://shortxlinks.com")
 SHORTLINK_API = os.environ.get("SHORTLINK_API", "aadb5c39c1319d8d8d70f935cb0eb3925a885a95")
 
 # Verification configuration
